@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1624705690570010045}
   - component: {fileID: 1624705690570010050}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,11 +246,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1624705690260225280}
     m_Modifications:
-    - target: {fileID: 3875212141729350709, guid: 2999da3815af64a4dbcb541fdba5a96a,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3875212141729350710, guid: 2999da3815af64a4dbcb541fdba5a96a,
         type: 3}
       propertyPath: m_LocalPosition.x
