@@ -6,7 +6,7 @@ public class StickController : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 {
     private Image background;
     [SerializeField] private Image pointer;
-    private Vector2 direction;
+    private static Vector2 direction;
 
     private void Start()
     {
@@ -36,5 +36,15 @@ public class StickController : MonoBehaviour, IDragHandler, IPointerUpHandler, I
     {
         direction = Vector2.zero;
         pointer.rectTransform.anchoredPosition = Vector2.zero;
+    }
+
+    public static float Horizontal()
+    {
+        return direction.x != 0 ? direction.x : Input.GetAxis("Horizontal");
+    }
+
+    public static float Vertical()
+    {
+        return direction.y != 0 ? direction.y : Input.GetAxis("Vertical");
     }
 }
