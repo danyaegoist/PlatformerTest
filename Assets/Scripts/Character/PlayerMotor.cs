@@ -26,7 +26,8 @@ public class PlayerMotor : MonoBehaviour
 
     private void FixedUpdate()
     {
-       rb.velocity = new Vector2(HorizontalDelta * Speed, rb.velocity.y);
+        CheckNormalGravity();
+        CheckZeroGravity();
     }
 
     private void Update()
@@ -43,7 +44,9 @@ public class PlayerMotor : MonoBehaviour
 
     private void PerformJump(bool pressed = false, bool released = false)
     {
-        if (!IsGrounded)
+        if (rb.gravityScale == 0) return;
+
+            if (!IsGrounded)
             LastChanceJumpTimer -= Time.deltaTime;
         else
             LastChanceJumpTimer = LastChanceJumpTime;
@@ -94,6 +97,20 @@ public class PlayerMotor : MonoBehaviour
         AdditionalJumpTimer -= Time.deltaTime;
     }
 
+    private void CheckNormalGravity()
+    {
+        if (rb.gravityScale != 0)
+            rb.velocity = new Vector2(HorizontalDelta * Speed, rb.velocity.y);
+    }
+
+    private void CheckZeroGravity()
+    {
+        if (rb.gravityScale == 0)
+        {
+            rb.velocity = new Vector2();
+            rb.MovePosition(new Vector2(transform.position.x + HorizontalDelta * Speed * Time.fixedDeltaTime, transform.position.y + VerticalDelta * Speed * Time.fixedDeltaTime));
+        }
+    }
 
     private void CheckGround()
     {

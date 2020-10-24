@@ -16,6 +16,7 @@ public class PlayerAnimator : MonoBehaviour
     void Update()
     {
         CheckAnimationState();
+        CheckRotation();
     }
 
     private void CheckAnimationState()
@@ -26,5 +27,11 @@ public class PlayerAnimator : MonoBehaviour
             Animator.SetInteger("State", 1);
         else
             Animator.SetInteger("State", 0);
+    }
+
+    private void CheckRotation()
+    {
+        if (StickController.Horizontal() != 0)
+            transform.localScale = new Vector3(StickController.Horizontal() < 0 ? -1 : 1, transform.localScale.y, transform.localScale.z);
     }
 }
